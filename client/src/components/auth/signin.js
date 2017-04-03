@@ -3,18 +3,26 @@ import {Field,reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import * as actions from '../../actions';
+import {
+    TextField
+} from 'redux-form-material-ui';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 class Signin extends Component{
-
+    componentWillMount(){
+        this.props.wipeError();
+    }
     handleFormSubmit({email,password}){
         if(email && password){
             this.props.signinUser({email,password});
+
         }else{
-            console.log('password error');
+            console.log('provide email and pasword');
         }
     }
     renderAlert(){
+        // console.log('this touched');
         if(this.props.errorMessage){
             return (
                 <div className="alert alert-danger" style={{marginTop:'10px'}}>
@@ -26,20 +34,18 @@ class Signin extends Component{
 
     render(){
         const {handleSubmit}=this.props;
-        // console.log(this.props);
+
         return (
 
             <form onSubmit = {handleSubmit(this.handleFormSubmit.bind(this))} >
 
                 <fieldset className="form-group">
-                    <label htmlFor="Email">Email:</label>
-                    <Field  className="form-control" name="email" component="input" type="text"></Field>
+                    <Field  name="email" component={TextField} type="text" floatingLabelText="email" ></Field>
                 </fieldset>
                 <fieldset className="form-group">
-                    <label htmlFor="Password">password:</label>
-                    <Field className="form-control" name="password" component="input" type="password"></Field>
-                    {this.renderAlert()}
-                    <button action="submit" style={{margin:'20px 0'}} className="btn btn-primary">Sign in</button>
+                    <Field  name="password" component={TextField} type="password" floatingLabelText="email" ></Field>
+                    {this.renderAlert(this.props.errorMessage)}
+                    <div> <RaisedButton type="submit" style={{marginTop:10}} label="Sign In" primary={true} /> </div>
                 </fieldset>
             </form>
         );

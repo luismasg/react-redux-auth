@@ -2,6 +2,7 @@ import React , {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
 import {browserHistory,Link} from 'react-router';
+import AppBar from 'material-ui/AppBar';
 
 
 class Header extends Component{
@@ -31,6 +32,9 @@ class Header extends Component{
         render(){
 
             return(
+
+
+
                 <nav className="navbar navbar-light">
                     <Link to="/" className="navbar-brand">Redux Auth</Link>
                     <ul className="nav navbar-nav">

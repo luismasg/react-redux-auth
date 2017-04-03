@@ -1,12 +1,15 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
-import {AUTH_USER,AUTH_ERR,UNAUTH_USER} from './types';
+import {AUTH_USER,AUTH_ERR,UNAUTH_USER,AUTH_ERR_WIPE} from './types';
 
 const ROOT_URL='http://localhost:3090';
 
 export function signoutUser(){
     localStorage.removeItem('token');
     return {type:UNAUTH_USER};
+}
+export function wipeError(){
+    return {type:AUTH_ERR_WIPE};
 }
 export function userIsSignedIn(){
     browserHistory.push('/feature');
@@ -18,24 +21,13 @@ export function signUpUser({email,password}){
     return function (dispatch){
         // submit email/password to server
         axios.post(`${ROOT_URL}/signup`,{email,password})
-        .then(response=>{
-            console.log('response from server signup is:\n ',response);
-            // if request is good ..
-
-            // -update state to indicate user is authenticates
+        .then(({data})=>{
             dispatch({type:AUTH_USER});
-
-            // -save the jwt token
-            localStorage.setItem('token',response.data.token);
-
-            // -redirect to route '/feature
-            //browserHistory.push('/feature');
+            localStorage.setItem('token',data.token);
+            browserHistory.push('/feature');
         })
-        .catch((response)=>{
-            // if request is bad ..
-            // -show an error to the user
-                    console.log('response from server signup is:\n ',response.data);
-            dispatch(authError('bad signup info'));
+        .catch(({response})=>{
+            dispatch(authError(response.data.error));
         });
     }
 }
@@ -54,12 +46,13 @@ export function signinUser({email,password}){
             localStorage.setItem('token',response.data.token);
 
             // -redirect to route '/feature
-            //browserHistory.push('/feature');
+            browserHistory.push('/feature');
         })
         .catch(()=>{
             // if request is bad ..
             // -show an error to the user
-            dispatch(authError('bad login info'));
+            console.log('big error');
+                dispatch(authError('bad login info'));
         });
     }
 }
