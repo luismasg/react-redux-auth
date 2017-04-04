@@ -7,6 +7,7 @@ export default function(ComposedComponent) {
     static contextTypes = {
       router: React.PropTypes.object
     }
+    
 
     componentWillMount() {
       if (!this.props.authenticated) {

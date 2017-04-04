@@ -6,9 +6,9 @@ import AppBar from 'material-ui/AppBar';
 
 
 class Header extends Component{
-    componentWillMount(){
-        if(localStorage.getItem('token')) this.props. userIsSignedIn();
-    }
+    // componentWillMount(){
+    //     if(localStorage.getItem('token')) this.props. userIsSignedIn();
+    // }
 
     renderLinks(){
         if(this.props.authenticated){

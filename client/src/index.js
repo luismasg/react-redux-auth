@@ -19,7 +19,9 @@ import RequireAuth from './components/auth/require_auth';
 
 // const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 // const store=createStoreWithMiddleware(reducers);
+
 const store= applyMiddleware(reduxThunk)(createStore)(reducers);
+
 if (localStorage.getItem('token')){
     store.dispatch({type:AUTH_USER});
 }
