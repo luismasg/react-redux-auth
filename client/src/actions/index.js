@@ -4,6 +4,7 @@ import {AUTH_USER,AUTH_ERR,UNAUTH_USER,AUTH_ERR_WIPE,FETCH_MESSAGE} from './type
 
 const ROOT_URL='http://localhost:3090';
 
+
 export function signoutUser(){
     localStorage.removeItem('token');
     return {type:UNAUTH_USER};
@@ -32,9 +33,10 @@ export function signUpUser({email,password}){
     }
 }
 export function signinUser({email,password}){
+    const username = email;
     return function (dispatch){
         // submit email/password to server
-        axios.post(`${ROOT_URL}/signin`,{email,password})
+        axios.post(`http://pc02tv4d:8081/interviews/webapi/aplicants/login/ `,{username,password})
         .then(response=>{
             // console.log('response from server is: ',response);
             // if request is good ..
