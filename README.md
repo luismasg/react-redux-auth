@@ -30,10 +30,10 @@ Open up a new administer terminal at proyect root, type the following commands  
 
 ## to run
 
-  cd client                          //go into client folder
-  npm start                          // start client
-  client should be available at  http://localhost:8080
+    cd client                          //go into client folder
+    npm start                          // start client
+    client should be available at  http://localhost:8080
 
  ### open a new terminal
-    cd server                                // go into server
-    npm run dev                             //load auto reloading server
+        cd server                                // go into server
+        npm run dev                             //load auto reloading server
