@@ -10,13 +10,16 @@ it is using React HOC to protect routes.
 
 
 ## Screenshots
+### S1
 ![screenshot 1](./redux-auth1.JPG?raw=true)
+### S2
 ![screenshot 1](./redux-auth2.JPG?raw=true)
-![screenshot 1](./redux-auth3.JPG.jpeg?raw=true)
+### S3
+![screenshot 1](./redux-auth3.JPG?raw=true)
 
 <br>
 <hr>
-<br>
+
 # To install:
 Open up a new administer terminal at proyect root, type the following commands  :
 
@@ -25,12 +28,12 @@ Open up a new administer terminal at proyect root, type the following commands  
     cd ../server                     //go back  to server folder
     npm install                      //isntall server dependencies
 
-# to run
+## to run
 
   cd client                          //go into client folder
   npm start                          // start client
   client should be available at  http://localhost:8080
 
-  ## open a new terminal
+ ### open a new terminal
     cd server                                // go into server
     npm run dev                             //load auto reloading server
